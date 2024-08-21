@@ -12,6 +12,7 @@ DEFAULT_APP = [
 ]
 CREATED_APP = [
     "apps.core.apps.CoreConfig",
+    "apps.questions.apps.QuestionsConfig",
     "apps.session.apps.SessionConfig",
 ]  # custom apps goe here
 
