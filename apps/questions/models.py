@@ -11,6 +11,7 @@ class Question(models.Model):
     incorrect_answer = ArrayField(models.CharField(max_length=1000), null=False)
     hint = ArrayField(models.CharField(max_length=1000), null=False)
     score = models.SmallIntegerField(null=False)
+    #final backup
    
 
 
