@@ -12,9 +12,13 @@ DEFAULT_APP = [
 ]
 CREATED_APP = [
     "apps.core.apps.CoreConfig",
+    "apps.questions.apps.QuestionsConfig",
+    "apps.session.apps.SessionConfig",
 ]  # custom apps goe here
 
 THIRD_PARTY_APP = [
+    "rest_framework"
+
     "rest_framework",
 ]  # third party apps goe here
 
