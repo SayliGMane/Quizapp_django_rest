@@ -5,12 +5,15 @@ LEVEL = {
     }
 
 TOPIC = {
-    "Basics_1" : "Data Types and Variables",
-    "Basics_2" : "Control Flow",
-    "Functions and Modules" : "Functions and Modules",
-    "Data Structures" : "Data Structures",
-    "File Handling" : "File Handling",
-    "Error and Exception Handling" : "Error and Exception Handling",
-    "Advanced Data Structures" : "Advanced Data Structures",
-    "OOP" : "Object-Oriented Programming (OOP)"
-}
+    "Basics_1" : "Data Types and Variables", #DTV
+    "Basics_2" : "Control Flow", #CF
+    "Functions and Modules" : "Functions and Modules", #F&M01001
+    "Data Structures" : "Data Structures", #DS
+    "File Handling" : "File Handling", #FL
+    "Error and Exception Handling" : "Error and Exception Handling", #EE
+    "Advanced Data Structures" : "Advanced Data Structures", #ADS
+    "OOP" : "Object-Oriented Programming (OOP)" #OOP
+} #[DTV|CF|F&M|DS|FL|EE|ADS|OOP]
+
+#(?=>)[DTV|CF|F&M|DS|FL|EE|ADS|OOP][01|02|03]\d+
+#

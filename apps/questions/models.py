@@ -4,7 +4,7 @@ from django.contrib.postgres.fields import ArrayField
 
 class Question(models.Model):
     id = models.CharField(max_length=50, primary_key=True)
-    question = models.TextField(max_length=2000)  # NOT NULL
+    question = models.TextField(max_length=2000)  
     select_level = models.CharField(max_length=40, choices=LEVEL, default='1')
     select_topic = models.CharField(max_length=80, choices=TOPIC, default='Basics_1')
     correct_answer = ArrayField(models.CharField(max_length=1000), null=False)
