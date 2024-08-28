@@ -1,12 +1,10 @@
 from django.db import models
 from datetime import datetime
-# Register your models here.
-
 
 class Session(models.Model):
 
     user = models.ForeignKey('auth.User', on_delete=models.CASCADE, to_field='username')
-    question= models.ForeignKey('question.Question', on_delete=models.CASCADE)
+    session_questions= models.ForeignKey('questions.Question', on_delete=models.CASCADE)
     is_correct = models.BooleanField(null=False)
     hint = models.BooleanField(null=False)
     session_date = models.DateField(default=datetime.today)
