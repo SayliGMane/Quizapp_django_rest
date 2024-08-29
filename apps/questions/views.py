@@ -11,17 +11,26 @@ from rest_framework.authentication import BasicAuthentication
 
 @api_view(['GET'])
 def display_questions_by_level(request,level,topic):
-   
-    #ORM
-    list_questions = list[Question.objects.filter(select_level=level,select_topic=topic)]
+      #ORM
+    list_questions = Question.objects.filter(select_level=level,select_topic=topic)
     #Serialiser
-    random.shuffle(list_questions) 
+    
     list_questions=list_questions[0:10]
     data = QuestionSerializer(data=list_questions, many=True)
     data.is_valid()
     #Retun
     return Response(data.data, status=status.HTTP_200_OK)
-
+   
+    # #ORM
+    # list_questions = list[Question.objects.filter(select_level=level,select_topic=topic)]
+    # #Serialiser
+    # random.shuffle(list_questions) 
+    # list_questions=list_questions[0:10]
+    # data = QuestionSerializer(data=list_questions, many=True)
+    # data.is_valid()
+    # #Retun
+    # return Response(data.data, status=status.HTTP_200_OK)
+#http://127.0.0.1:8000/api/v1/questions/level/01/topic/DTV
 
 
 @api_view(['POST'])
@@ -39,7 +48,7 @@ def create_question(request):
         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
-# data = '{
+#{
 #     "id": "OOP01001",
 #     "question": "What is the core concept of object-oriented programming (OOP)?",
 #     "select_level": "1",
@@ -48,4 +57,19 @@ def create_question(request):
 #     "incorrect_answer": ["Data structures", "Algorithms", "Functions"],
 #     "hint": ["Test"],
 #     "score": 5
-# }'
+# }
+
+
+
+@api_view(['DELETE'])
+def delete_question(request,id):
+    
+    question= Question.objects.get(id=id)
+    if question :
+        question.delete()
+        return Response(question.id,status=status.HTTP_200_OK) 
+    else: 
+        return Response(None,status=status.HTTP_404_NOT_FOUND)   
+
+
+    
