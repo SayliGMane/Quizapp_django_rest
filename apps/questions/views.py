@@ -1,11 +1,12 @@
 from django.shortcuts import render
-from rest_framework.decorators import api_view,permission_classes
+from rest_framework.decorators import api_view,permission_classes,authentication_classes
 from apps.questions.models import Question
 from apps.questions.serializers import QuestionSerializer
 from rest_framework.response import Response
 from rest_framework import status
 import random
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import BasicAuthentication
 #Create your views here.
 
 @api_view(['GET'])
@@ -23,18 +24,19 @@ def display_questions_by_level(request,level,topic):
 
 
 
-# @api_view(['POST'])
-# @permission_classes([IsAuthenticated])
-# def create_question(request):
-#     data = request.data
-#     serializer = QuestionSerializer(data=data)
+@api_view(['POST'])
+@authentication_classes([BasicAuthentication])
+@permission_classes([IsAuthenticated])
+def create_question(request):
+    data = request.data
+    serializer = QuestionSerializer(data=data)
 
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data,status=status.HTTP_201_CREATED)
-#     else: 
-#         #print("problem")
-#         return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
+    if serializer.is_valid():
+        serializer.save()
+        return Response(serializer.data,status=status.HTTP_201_CREATED)
+    else: 
+        #print("problem")
+        return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
 
 # data = '{

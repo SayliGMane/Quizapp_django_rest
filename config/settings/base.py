@@ -19,6 +19,7 @@ CREATED_APP = [
 
 THIRD_PARTY_APP = [
     "rest_framework",
+    
 ]  # third party apps goe here
 
 INSTALLED_APPS = [*DEFAULT_APP, *CREATED_APP, *THIRD_PARTY_APP]
