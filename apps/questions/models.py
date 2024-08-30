@@ -13,8 +13,6 @@ class Question(models.Model):
     score = models.SmallIntegerField(null=False)
    
 
-
-
     def __str__(self) -> str:
         return f'{self.question}'
 

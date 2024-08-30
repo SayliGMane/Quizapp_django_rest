@@ -1,0 +1,12 @@
+id,question,select_level,select_topic,correct_answer,incorrect_answer,hint,score
+DTV01001,"What is a data type?",1,DTV,"D","A,B,C","Think about what defines a data type.",10
+DTV01002,"Which of the following is not a common data type in programming?",1,DTV,"E","A,B,C,D","Consider which one is not a primitive data type.",10
+DTV01003,"What is the difference between an integer and a float?",1,DTV,"B","A,C,D","Think about what types of values they can store.",10
+DTV01004,"A Boolean data type can hold which of the following values?",1,DTV,"A","B,C,D","Remember, Boolean represents truth values.",10
+DTV01005,"What is a variable?",1,DTV,"D","A,B,C","Consider what role a variable plays in programming.",10
+DTV01006,"Which data type would you use to store a person's name?",1,DTV,"C","A,B,D","What data type is suitable for text?",10
+DTV01007,"What is the purpose of declaring a variable?",1,DTV,"D","A,B,C","Think about all the functions of declaring a variable.",10
+DTV01008,"How do you assign a value to a variable in most programming languages?",1,DTV,"A","B,C,D","Consider the most common assignment operator.",10
+DTV01009,"What is the difference between a local and a global variable?",1,DTV,"A","B,C,D","Think about where each type of variable is declared.",10
+DTV01010,"What is the importance of naming conventions in programming?",1,DTV,"D","A,B,C","Think about the advantages of using proper naming conventions.",10
+#session1

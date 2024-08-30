@@ -10,15 +10,15 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import BasicAuthentication,TokenAuthentication
 #Create your views here.
 
+
 @api_view(['GET'])
-def display_questions_by_level(request,level,topic):
-    #ORM fecth data from table
-    list_questions = Question.objects.filter(select_level=level,select_topic=topic)
-    #Serialiser pass it to serilaizer
-    #list_questions=list_questions
-    data = QuestionSerializer(data=list_questions, many=True)
-    data.is_valid()
-    #Retun
+def display_questions_by_level(request, level, topic):
+    # ORM fetch data from table
+    list_questions = Question.objects.filter(select_level=level, select_topic=topic)
+    
+    # Serializer to convert queryset to JSON
+    data = QuestionSerializer(list_questions, many=True)
+    
     return Response(data.data, status=status.HTTP_200_OK)
 # #ORM
 # list_questions = list[Question.objects.filter(select_level=level,select_topic=topic)]
@@ -32,7 +32,6 @@ def display_questions_by_level(request,level,topic):
 #http://127.0.0.1:8000/api/v1/questions/level/01/topic/DTV
 
 @api_view(['POST'])
-@authentication_classes([BasicAuthentication])
 @permission_classes([IsAuthenticated])
 def create_question(request):
     data = request.data
@@ -57,16 +56,13 @@ def create_question(request):
 #242ebe3b906d639539c5d45014bbf7f0509be117
 
 
-#@permission_classes([IsAuthenticated])
-#@authentication_classes([TokenAuthentication])
 @api_view(['DELETE'])
-@authentication_classes([BasicAuthentication])
 @permission_classes([IsAuthenticated])
 def delete_question(request,id):
     question= Question.objects.get(id=id)
     if question :
         question.delete()
-        return Response(f"{id} is deleted",status=status.HTTP_200_OK) 
+        return Response(f"Question : {id} is deleted",status=status.HTTP_200_OK) 
     return Response({"detail": "Question not found."},status=status.HTTP_404_NOT_FOUND) 
 
 
