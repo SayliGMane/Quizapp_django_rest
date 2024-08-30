@@ -5,6 +5,7 @@ from apps.questions.serializers import QuestionSerializer
 from rest_framework.response import Response
 from rest_framework import status
 import random
+from django.shortcuts import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import BasicAuthentication,TokenAuthentication
 #Create your views here.
@@ -14,7 +15,7 @@ def display_questions_by_level(request,level,topic):
     #ORM fecth data from table
     list_questions = Question.objects.filter(select_level=level,select_topic=topic)
     #Serialiser pass it to serilaizer
-    list_questions=list_questions[0:10]
+    #list_questions=list_questions
     data = QuestionSerializer(data=list_questions, many=True)
     data.is_valid()
     #Retun
@@ -38,13 +39,11 @@ def create_question(request):
     serializer = QuestionSerializer(data=data)
 
     if serializer.is_valid():
-    serializer.save()
-    return Response(serializer.data,status=status.HTTP_201_CREATED)
-    else: 
-    #print("problem")
+        serializer.save()
+        return Response(serializer.data,status=status.HTTP_201_CREATED)
     return Response(serializer.errors,status=status.HTTP_400_BAD_REQUEST)
 
-#{
+# {
 # "id": "OOP01001",
 # "question": "What is the core concept of object-oriented programming (OOP)?",
 # "select_level": "1",
@@ -53,18 +52,21 @@ def create_question(request):
 # "incorrect_answer": ["Data structures", "Algorithms", "Functions"],
 # "hint": ["Test"],
 # "score": 5
-# }
+#}
 
 #242ebe3b906d639539c5d45014bbf7f0509be117
 
+
+#@permission_classes([IsAuthenticated])
+#@authentication_classes([TokenAuthentication])
 @api_view(['DELETE'])
-@authentication_classes([TokenAuthentication])
+@authentication_classes([BasicAuthentication])
 @permission_classes([IsAuthenticated])
 def delete_question(request,id):
     question= Question.objects.get(id=id)
     if question :
         question.delete()
-        return Response(question.id,status=status.HTTP_200_OK) 
+        return Response(f"{id} is deleted",status=status.HTTP_200_OK) 
     return Response({"detail": "Question not found."},status=status.HTTP_404_NOT_FOUND) 
 
 
