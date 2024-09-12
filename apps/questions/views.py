@@ -18,8 +18,12 @@ def display_questions_by_level(request, level, topic):
     
     # Serializer to convert queryset to JSON
     data = QuestionSerializer(list_questions, many=True)
-    
-    return Response(data.data, status=status.HTTP_200_OK)
+
+    if data.data :
+        print (data.data)
+        return Response(data.data,status=status.HTTP_200_OK) 
+    return Response({"detail": "Question not found."},status=status.HTTP_404_NOT_FOUND) 
+   
 # #ORM
 # list_questions = list[Question.objects.filter(select_level=level,select_topic=topic)]
 # #Serialiser
@@ -51,7 +55,7 @@ def create_question(request):
 # "incorrect_answer": ["Data structures", "Algorithms", "Functions"],
 # "hint": ["Test"],
 # "score": 5
-#}
+# }
 
 #242ebe3b906d639539c5d45014bbf7f0509be117
 
@@ -64,5 +68,4 @@ def delete_question(request,id):
         question.delete()
         return Response(f"Question : {id} is deleted",status=status.HTTP_200_OK) 
     return Response({"detail": "Question not found."},status=status.HTTP_404_NOT_FOUND) 
-
 
